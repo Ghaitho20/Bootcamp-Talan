@@ -1,0 +1,12 @@
+apiVersion: 1
+datasources:
+  - name: treesDB
+    type: postgres
+    access: proxy
+    url: postgres:5432
+    database: treesdb
+    user: spark
+    password: spark123
+    isDefault: true
+    jsonData:
+      sslmode: disable

@@ -1,0 +1,21 @@
+{
+  "id": null,
+  "title": "Remarkable Trees by Arrondissement",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "bar",
+      "title": "Remarkable vs Total Trees",
+      "targets": [
+        {
+          "rawSql": "SELECT timestamp, total_trees, remarkable_trees, arrondissement FROM trees_remarkable_stats ORDER BY timestamp ASC",
+          "refId": "A",
+          "format": "time_series"
+        }
+      ],
+      "datasource": "TreesDB",
+      "xaxis": { "mode": "time" }
+    }
+  ]
+}

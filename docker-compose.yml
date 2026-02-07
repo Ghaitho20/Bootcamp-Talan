@@ -138,30 +138,6 @@ services:
       "
     restart: on-failure
 
-  spark-job-elk:
-    image: apache/spark:3.4.1
-    container_name: spark-job-elk
-    user: root
-    depends_on:
-      - spark-master
-      - namenode
-      - elasticsearch
-    volumes:
-      - ./spark_jobs:/opt/spark-apps
-      - ivy-cache:/root/.ivy2
-    networks:
-      - pipeline-network
-    command: >
-      bash -c "
-      sleep 25 &&
-      /opt/spark/bin/spark-submit 
-      --master spark://spark-master:7077 
-      --packages org.elasticsearch:elasticsearch-spark-30_2.12:8.12.1
-      /opt/spark-apps/hdfs_to_elk_streaming.py
-      "
-    restart: on-failure
-
-
   # ============================================
   # HADOOP NAMENODE
   # ============================================
@@ -200,31 +176,44 @@ services:
     networks:
       - pipeline-network
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.1
-    container_name: elasticsearch
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
     environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      POSTGRES_USER: spark
+      POSTGRES_PASSWORD: spark123
+      POSTGRES_DB: treesdb
     ports:
-      - "9200:9200"
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d
+    networks:
+      - pipeline-network   
+
+    # ============================================
+  # GRAFANA
+  # ============================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    volumes:
+      - grafana_data:/var/lib/grafana
     networks:
       - pipeline-network
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:8.12.1
-    container_name: kibana
     depends_on:
-      - elasticsearch
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    ports:
-      - "5601:5601"
-    networks:
-      - pipeline-network
+      - postgres
 
-  
+
+    
+
+
 # ============================
 # VOLUMES
 # ============================
@@ -233,7 +222,7 @@ volumes:
   hadoop_namenode:
   hadoop_datanode:
   ivy-cache:  # Shared volume for Ivy/Maven dependencies
-
+  pgdata:
 # ============================
 # NETWORK
 # ============================

@@ -1,0 +1,34 @@
+{
+  "id": null,
+  "title": "Height Statistics by Species",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Average Height",
+      "targets": [
+        {
+          "rawSql": "SELECT timestamp, avg_height, espece FROM trees_height_stats ORDER BY timestamp ASC",
+          "refId": "A",
+          "format": "time_series"
+        }
+      ],
+      "datasource": "TreesDB",
+      "xaxis": { "mode": "time" }
+    },
+    {
+      "type": "graph",
+      "title": "Max & Min Height",
+      "targets": [
+        {
+          "rawSql": "SELECT timestamp, max_height, min_height, espece FROM trees_height_stats ORDER BY timestamp ASC",
+          "refId": "B",
+          "format": "time_series"
+        }
+      ],
+      "datasource": "TreesDB",
+      "xaxis": { "mode": "time" }
+    }
+  ]
+}

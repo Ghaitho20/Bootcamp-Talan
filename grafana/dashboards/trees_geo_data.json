@@ -1,0 +1,20 @@
+{
+  "id": null,
+  "title": "Trees Geo Data",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "heatmap",
+      "title": "Tree Locations",
+      "targets": [
+        {
+          "rawSql": "SELECT timestamp, lat, lon, espece FROM trees_geo_data ORDER BY timestamp ASC",
+          "refId": "A",
+          "format": "time_series"
+        }
+      ],
+      "datasource": "TreesDB"
+    }
+  ]
+}

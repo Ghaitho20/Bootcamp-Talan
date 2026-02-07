@@ -1,0 +1,21 @@
+{
+  "id": null,
+  "title": "Top Species",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "bar",
+      "title": "Count by Species",
+      "targets": [
+        {
+          "rawSql": "SELECT timestamp, count, espece FROM trees_by_species ORDER BY count DESC",
+          "refId": "A",
+          "format": "time_series"
+        }
+      ],
+      "datasource": "TreesDB",
+      "xaxis": { "mode": "time" }
+    }
+  ]
+}
