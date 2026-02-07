@@ -1,0 +1,150 @@
+[2026-02-07T15:51:03.986+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: paris_trees_pipeline.kafka_to_hdfs manual__2026-02-07T15:51:00.520784+00:00 [queued]>
+[2026-02-07T15:51:03.995+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: paris_trees_pipeline.kafka_to_hdfs manual__2026-02-07T15:51:00.520784+00:00 [queued]>
+[2026-02-07T15:51:03.996+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-02-07T15:51:04.011+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): kafka_to_hdfs> on 2026-02-07 15:51:00.520784+00:00
+[2026-02-07T15:51:04.016+0000] {standard_task_runner.py:60} INFO - Started process 190 to run task
+[2026-02-07T15:51:04.019+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'paris_trees_pipeline', 'kafka_to_hdfs', 'manual__2026-02-07T15:51:00.520784+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/trees_pipeline_dag.py', '--cfg-path', '/tmp/tmphv_uay__']
+[2026-02-07T15:51:04.021+0000] {standard_task_runner.py:88} INFO - Job 3: Subtask kafka_to_hdfs
+[2026-02-07T15:51:04.077+0000] {task_command.py:423} INFO - Running <TaskInstance: paris_trees_pipeline.kafka_to_hdfs manual__2026-02-07T15:51:00.520784+00:00 [running]> on host ff1e0cb7d106
+[2026-02-07T15:51:04.155+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ghaith' AIRFLOW_CTX_DAG_ID='paris_trees_pipeline' AIRFLOW_CTX_TASK_ID='kafka_to_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2026-02-07T15:51:00.520784+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-07T15:51:00.520784+00:00'
+[2026-02-07T15:51:57.800+0000] {logging_mixin.py:188} INFO - :: loading settings :: url = jar:file:/opt/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: /root/.ivy2/cache
+The jars for the packages stored in: /root/.ivy2/jars
+org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-1fe43641-766d-4666-b024-3aa82a0ea906;1.0
+	confs: [default]
+	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1 in central
+	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.4.1 in central
+	found org.apache.kafka#kafka-clients;3.3.2 in central
+	found org.lz4#lz4-java;1.8.0 in central
+	found org.xerial.snappy#snappy-java;1.1.10.1 in central
+	found org.slf4j#slf4j-api;2.0.6 in central
+	found org.apache.hadoop#hadoop-client-runtime;3.3.4 in central
+	found org.apache.hadoop#hadoop-client-api;3.3.4 in central
+	found commons-logging#commons-logging;1.1.3 in central
+	found com.google.code.findbugs#jsr305;3.0.0 in central
+	found org.apache.commons#commons-pool2;2.11.1 in central
+downloading https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.12/3.4.1/spark-sql-kafka-0-10_2.12-3.4.1.jar ...
+	[SUCCESSFUL ] org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1!spark-sql-kafka-0-10_2.12.jar (218ms)
+downloading https://repo1.maven.org/maven2/org/apache/spark/spark-token-provider-kafka-0-10_2.12/3.4.1/spark-token-provider-kafka-0-10_2.12-3.4.1.jar ...
+	[SUCCESSFUL ] org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.4.1!spark-token-provider-kafka-0-10_2.12.jar (102ms)
+downloading https://repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.3.2/kafka-clients-3.3.2.jar ...
+	[SUCCESSFUL ] org.apache.kafka#kafka-clients;3.3.2!kafka-clients.jar (1505ms)
+downloading https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.0/jsr305-3.0.0.jar ...
+	[SUCCESSFUL ] com.google.code.findbugs#jsr305;3.0.0!jsr305.jar (93ms)
+downloading https://repo1.maven.org/maven2/org/apache/commons/commons-pool2/2.11.1/commons-pool2-2.11.1.jar ...
+	[SUCCESSFUL ] org.apache.commons#commons-pool2;2.11.1!commons-pool2.jar (121ms)
+downloading https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-client-runtime/3.3.4/hadoop-client-runtime-3.3.4.jar ...
+	[SUCCESSFUL ] org.apache.hadoop#hadoop-client-runtime;3.3.4!hadoop-client-runtime.jar (8432ms)
+downloading https://repo1.maven.org/maven2/org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar ...
+	[SUCCESSFUL ] org.lz4#lz4-java;1.8.0!lz4-java.jar (271ms)
+downloading https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.10.1/snappy-java-1.1.10.1.jar ...
+	[SUCCESSFUL ] org.xerial.snappy#snappy-java;1.1.10.1!snappy-java.jar(bundle) (578ms)
+downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.jar ...
+	[SUCCESSFUL ] org.slf4j#slf4j-api;2.0.6!slf4j-api.jar (97ms)
+downloading https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-client-api/3.3.4/hadoop-client-api-3.3.4.jar ...
+	[SUCCESSFUL ] org.apache.hadoop#hadoop-client-api;3.3.4!hadoop-client-api.jar (5486ms)
+downloading https://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar ...
+	[SUCCESSFUL ] commons-logging#commons-logging;1.1.3!commons-logging.jar (117ms)
+:: resolution report :: resolve 7476ms :: artifacts dl 17031ms
+	:: modules in use:
+	com.google.code.findbugs#jsr305;3.0.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	org.apache.commons#commons-pool2;2.11.1 from central in [default]
+	org.apache.hadoop#hadoop-client-api;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-client-runtime;3.3.4 from central in [default]
+	org.apache.kafka#kafka-clients;3.3.2 from central in [default]
+	org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1 from central in [default]
+	org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.4.1 from central in [default]
+	org.lz4#lz4-java;1.8.0 from central in [default]
+	org.slf4j#slf4j-api;2.0.6 from central in [default]
+	org.xerial.snappy#snappy-java;1.1.10.1 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   11  |   11  |   11  |   0   ||   11  |   11  |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-1fe43641-766d-4666-b024-3aa82a0ea906
+	confs: [default]
+	11 artifacts copied, 0 already retrieved (56445kB/104ms)
+26/02/07 15:51:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/02/07 15:51:33 INFO SparkContext: Running Spark version 3.4.1
+26/02/07 15:51:33 INFO ResourceUtils: ==============================================================
+26/02/07 15:51:33 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/02/07 15:51:33 INFO ResourceUtils: ==============================================================
+26/02/07 15:51:33 INFO SparkContext: Submitted application: KafkaToHDFS_Batch
+26/02/07 15:51:33 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/02/07 15:51:33 INFO ResourceProfile: Limiting resource is cpu
+26/02/07 15:51:33 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/02/07 15:51:33 INFO SecurityManager: Changing view acls to: root
+26/02/07 15:51:33 INFO SecurityManager: Changing modify acls to: root
+26/02/07 15:51:33 INFO SecurityManager: Changing view acls groups to: 
+26/02/07 15:51:33 INFO SecurityManager: Changing modify acls groups to: 
+26/02/07 15:51:33 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+26/02/07 15:51:33 INFO Utils: Successfully started service 'sparkDriver' on port 45841.
+26/02/07 15:51:33 INFO SparkEnv: Registering MapOutputTracker
+26/02/07 15:51:33 INFO SparkEnv: Registering BlockManagerMaster
+26/02/07 15:51:33 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/02/07 15:51:33 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/02/07 15:51:33 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/02/07 15:51:33 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-bf44aeed-aa87-4fab-aa52-0b03d1229970
+26/02/07 15:51:33 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+26/02/07 15:51:33 INFO SparkEnv: Registering OutputCommitCoordinator
+26/02/07 15:51:34 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/02/07 15:51:34 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.4.1.jar at spark://spark-master:45841/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.4.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.4.1.jar at spark://spark-master:45841/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.4.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-3.3.2.jar at spark://spark-master:45841/jars/org.apache.kafka_kafka-clients-3.3.2.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar at spark://spark-master:45841/jars/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar at spark://spark-master:45841/jars/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar at spark://spark-master:45841/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar at spark://spark-master:45841/jars/org.lz4_lz4-java-1.8.0.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.1.jar at spark://spark-master:45841/jars/org.xerial.snappy_snappy-java-1.1.10.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.slf4j_slf4j-api-2.0.6.jar at spark://spark-master:45841/jars/org.slf4j_slf4j-api-2.0.6.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar at spark://spark-master:45841/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added JAR file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar at spark://spark-master:45841/jars/commons-logging_commons-logging-1.1.3.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.4.1.jar at spark://spark-master:45841/files/org.apache.spark_spark-sql-kafka-0-10_2.12-3.4.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.4.1.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.apache.spark_spark-sql-kafka-0-10_2.12-3.4.1.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.4.1.jar at spark://spark-master:45841/files/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.4.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.4.1.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.4.1.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-3.3.2.jar at spark://spark-master:45841/files/org.apache.kafka_kafka-clients-3.3.2.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.apache.kafka_kafka-clients-3.3.2.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.apache.kafka_kafka-clients-3.3.2.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar at spark://spark-master:45841/files/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/com.google.code.findbugs_jsr305-3.0.0.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar at spark://spark-master:45841/files/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.apache.commons_commons-pool2-2.11.1.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar at spark://spark-master:45841/files/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar at spark://spark-master:45841/files/org.lz4_lz4-java-1.8.0.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.lz4_lz4-java-1.8.0.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.1.jar at spark://spark-master:45841/files/org.xerial.snappy_snappy-java-1.1.10.1.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.1.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.xerial.snappy_snappy-java-1.1.10.1.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.slf4j_slf4j-api-2.0.6.jar at spark://spark-master:45841/files/org.slf4j_slf4j-api-2.0.6.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.slf4j_slf4j-api-2.0.6.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.slf4j_slf4j-api-2.0.6.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar at spark://spark-master:45841/files/org.apache.hadoop_hadoop-client-api-3.3.4.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/org.apache.hadoop_hadoop-client-api-3.3.4.jar
+26/02/07 15:51:34 INFO SparkContext: Added file file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar at spark://spark-master:45841/files/commons-logging_commons-logging-1.1.3.jar with timestamp 1770479493025
+26/02/07 15:51:34 INFO Utils: Copying /root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar to /tmp/spark-75625451-8483-471e-a6b2-3a1299d48592/userFiles-0f5f644c-c9c8-4604-9966-e5a764c626e8/commons-logging_commons-logging-1.1.3.jar
+26/02/07 15:51:34 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/02/07 15:51:34 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.4:7077 after 57 ms (0 ms spent in bootstraps)
+26/02/07 15:51:35 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260207155134-0000
+26/02/07 15:51:35 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 40657.
+26/02/07 15:51:35 INFO NettyBlockTransferService: Server created on spark-master:40657
+26/02/07 15:51:35 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/02/07 15:51:35 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-master, 40657, None)
+26/02/07 15:51:35 INFO BlockManagerMasterEndpoint: Registering block manager spark-master:40657 with 434.4 MiB RAM, BlockManagerId(driver, spark-master, 40657, None)
+26/02/07 15:51:35 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-master, 40657, None)
+26/02/07 15:51:35 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-master, 40657, None)
+26/02/07 15:51:35 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260207155134-0000/0 on worker-20260207154956-172.18.0.10-33037 (172.18.0.10:33037) with 2 core(s)
+26/02/07 15:51:35 INFO StandaloneSchedulerBackend: Granted executor ID app-20260207155134-0000/0 on hostPort 172.18.0.10:33037 with 2 core(s), 1024.0 MiB RAM
+26/02/07 15:51:35 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260207155134-0000/0 is now RUNNING
+26/02/07 15:51:35 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+26/02/07 15:51:44 WARN AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+26/02/07 15:51:52 WARN AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+26/02/07 15:51:56 WARN AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+Batch written to HDFS (20 records)
+[2026-02-07T15:51:57.802+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-02-07T15:51:57.822+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=paris_trees_pipeline, task_id=kafka_to_hdfs, execution_date=20260207T155100, start_date=20260207T155103, end_date=20260207T155157
+[2026-02-07T15:51:57.879+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-07T15:51:57.906+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

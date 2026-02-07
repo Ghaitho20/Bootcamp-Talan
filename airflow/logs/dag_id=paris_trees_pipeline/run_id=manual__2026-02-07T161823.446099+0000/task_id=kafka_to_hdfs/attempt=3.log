@@ -1,0 +1,9 @@
+[2026-02-07T17:17:59.906+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: paris_trees_pipeline.kafka_to_hdfs manual__2026-02-07T16:18:23.446099+00:00 [queued]>
+[2026-02-07T17:17:59.935+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: paris_trees_pipeline.kafka_to_hdfs manual__2026-02-07T16:18:23.446099+00:00 [queued]>
+[2026-02-07T17:17:59.937+0000] {taskinstance.py:2170} INFO - Starting attempt 3 of 2
+[2026-02-07T17:18:00.014+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): kafka_to_hdfs> on 2026-02-07 16:18:23.446099+00:00
+[2026-02-07T17:18:00.028+0000] {standard_task_runner.py:60} INFO - Started process 192 to run task
+[2026-02-07T17:18:00.071+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'paris_trees_pipeline', 'kafka_to_hdfs', 'manual__2026-02-07T16:18:23.446099+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/trees_pipeline_dag.py', '--cfg-path', '/tmp/tmpsq1982g9']
+[2026-02-07T17:18:00.094+0000] {standard_task_runner.py:88} INFO - Job 66: Subtask kafka_to_hdfs
+[2026-02-07T17:18:00.585+0000] {task_command.py:423} INFO - Running <TaskInstance: paris_trees_pipeline.kafka_to_hdfs manual__2026-02-07T16:18:23.446099+00:00 [running]> on host 5a9eb6cc9b9f
+[2026-02-07T17:18:01.245+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ghaith' AIRFLOW_CTX_DAG_ID='paris_trees_pipeline' AIRFLOW_CTX_TASK_ID='kafka_to_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2026-02-07T16:18:23.446099+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-07T16:18:23.446099+00:00'

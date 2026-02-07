@@ -6,8 +6,7 @@ from pyspark.sql.types import *
 # CREATE SPARK SESSION
 # ============================
 spark = SparkSession.builder \
-    .appName("HDFS → PostgreSQL Streaming") \
-    .config("spark.sql.streaming.schemaInference", "true") \
+    .appName("HDFS_to_Postgres_Batch") \
     .getOrCreate()
 
 spark.sparkContext.setLogLevel("WARN")
@@ -36,35 +35,32 @@ schema = StructType([
     StructField("lat", DoubleType())
 ])
 
+# ============================
+# READ CSV FILES FROM HDFS (BATCH)
+# ============================
 input_path = "hdfs://namenode:9000/data/paris_trees/raw_csv/part-*.csv"
-print(f"📂 Reading from: {input_path}\n")
-
-# ============================
-# READ STREAMING DATAFRAME
-# ============================
-df = spark.readStream \
+df = spark.read \
     .option("header", "true") \
     .schema(schema) \
     .csv(input_path)
 
-print("✅ Stream configured\n")
+if df.count() == 0:
+    print("No new data in HDFS")
+    exit(0)
 
 # ============================
 # AGGREGATIONS
 # ============================
-# 1️⃣ Trees by arrondissement
 trees_by_arrondissement = df.groupBy("arrondissement") \
     .agg(count("*").alias("total_trees")) \
     .withColumn("timestamp", current_timestamp())
 
-# 2️⃣ Top species
 top_species = df.groupBy("espece") \
     .agg(count("*").alias("count")) \
     .withColumn("timestamp", current_timestamp()) \
     .orderBy(desc("count")) \
     .limit(50)
 
-# 3️⃣ Height statistics
 height_stats = df.filter(col("hauteur").isNotNull()) \
     .groupBy("espece") \
     .agg(
@@ -77,7 +73,6 @@ height_stats = df.filter(col("hauteur").isNotNull()) \
     .withColumn("timestamp", current_timestamp()) \
     .orderBy(desc("avg_height"))
 
-# 4️⃣ Remarkable trees
 remarkable_by_arr = df.groupBy("arrondissement") \
     .agg(
         count("*").alias("total_trees"),
@@ -85,7 +80,6 @@ remarkable_by_arr = df.groupBy("arrondissement") \
     ) \
     .withColumn("timestamp", current_timestamp())
 
-# 5️⃣ Geo data
 geo_data = df.filter(col("lat").isNotNull() & col("lon").isNotNull()) \
     .select("lat", "lon", "arrondissement", "espece", "hauteur", "remarquable") \
     .withColumn("timestamp", current_timestamp())
@@ -103,50 +97,17 @@ pg_properties = {
 # ============================
 # FUNCTION TO WRITE TO POSTGRES
 # ============================
-def write_to_postgres(batch_df, batch_id, table_name):
-    batch_df.write.jdbc(
-        url=pg_url,
-        table=table_name,
-        mode="append",
-        properties=pg_properties
-    )
+def write_to_postgres(df, table_name):
+    df.write.jdbc(url=pg_url, table=table_name, mode="append", properties=pg_properties)
+    print(f"✅ Written {df.count()} records to {table_name}")
 
 # ============================
-# STREAMING WRITES
+# WRITE AGGREGATIONS
 # ============================
-q1 = trees_by_arrondissement.writeStream \
-    .foreachBatch(lambda df, id: write_to_postgres(df, id, "trees_by_arrondissement")) \
-    .outputMode("complete") \
-    .start()
+write_to_postgres(trees_by_arrondissement, "trees_by_arrondissement")
+write_to_postgres(top_species, "trees_by_species")
+write_to_postgres(height_stats, "trees_height_stats")
+write_to_postgres(remarkable_by_arr, "trees_remarkable_stats")
+write_to_postgres(geo_data, "trees_geo_data")
 
-q2 = top_species.writeStream \
-    .foreachBatch(lambda df, id: write_to_postgres(df, id, "trees_by_species")) \
-    .outputMode("complete") \
-    .start()
-
-q3 = height_stats.writeStream \
-    .foreachBatch(lambda df, id: write_to_postgres(df, id, "trees_height_stats")) \
-    .outputMode("complete") \
-    .start()
-
-q4 = remarkable_by_arr.writeStream \
-    .foreachBatch(lambda df, id: write_to_postgres(df, id, "trees_remarkable_stats")) \
-    .outputMode("complete") \
-    .start()
-
-q5 = geo_data.writeStream \
-    .foreachBatch(lambda df, id: write_to_postgres(df, id, "trees_geo_data")) \
-    .outputMode("append") \
-    .start()
-
-# ============================
-# CONSOLE DEBUGGING (OPTIONAL)
-# ============================
-console = df.writeStream \
-    .outputMode("append") \
-    .format("console") \
-    .option("truncate", "false") \
-    .option("numRows", 20) \
-    .start()
-
-spark.streams.awaitAnyTermination()
+print("✅ All data written to Postgres. Job finished.")

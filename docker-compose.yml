@@ -41,6 +41,28 @@ services:
       - pipeline-network
 
   # ============================================
+  # KAFKA PRODUCER SERVICE
+  # ============================================
+  kafka-producer:
+    build:
+      context: ./data_producer
+      dockerfile: Dockerfile
+    container_name: kafka-producer
+    depends_on:
+      - kafka
+    volumes:
+      - ./data_producer:/app
+    working_dir: /app
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      KAFKA_TOPIC: paris-trees-stream
+      BATCH_LIMIT: 20
+      FETCH_INTERVAL: 60
+    networks:
+      - pipeline-network
+    command: tail -f /dev/null  # Keep container running
+
+  # ============================================
   # SPARK MASTER
   # ============================================
   spark-master:
@@ -93,7 +115,7 @@ services:
       "
 
   # ============================================
-  # SPARK JOB SETUP (downloads dependencies once)
+  # SPARK JOB SETUP
   # ============================================
   spark-setup:
     image: apache/spark:3.4.1
@@ -110,33 +132,6 @@ services:
       /opt/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 --version || true;
       echo 'Dependencies downloaded to /root/.ivy2';
       "
-
-  # ============================================
-  # SPARK JOB (auto-submit PySpark script)
-  # ============================================
-  spark-job:
-    image: apache/spark:3.4.1
-    container_name: spark-job
-    user: root
-    depends_on:
-      - spark-master
-      - kafka
-      - spark-setup
-    volumes:
-      - ./spark_jobs:/opt/spark-apps
-      - ivy-cache:/root/.ivy2
-    networks:
-      - pipeline-network
-    command: >
-      bash -c "
-      echo 'Waiting for Spark Master to be ready...';
-      sleep 20;
-      /opt/spark/bin/spark-submit 
-      --master spark://spark-master:7077 
-      --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1
-      /opt/spark-apps/kafka_to_hdfs.py
-      "
-    restart: on-failure
 
   # ============================================
   # HADOOP NAMENODE
@@ -192,7 +187,7 @@ services:
     networks:
       - pipeline-network   
 
-    # ============================================
+  # ============================================
   # GRAFANA
   # ============================================
   grafana:
@@ -210,9 +205,96 @@ services:
     depends_on:
       - postgres
 
+  # ============================================
+  # AIRFLOW
+  # ============================================
+  airflow-postgres:
+    image: postgres:15
+    container_name: airflow-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - airflow_pgdata:/var/lib/postgresql/data
+    networks:
+      - pipeline-network
 
-    
+  airflow-init:
+    image: apache/airflow:2.8.1
+    container_name: airflow-init
+    depends_on:
+      - airflow-postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db migrate
+        airflow users create \
+          --username admin \
+          --password admin \
+          --firstname Admin \
+          --lastname User \
+          --role Admin \
+          --email admin@example.com || true
+    networks:
+      - pipeline-network
 
+  airflow-webserver:
+    image: apache/airflow:2.8.1
+    container_name: airflow-webserver
+    depends_on:
+      - airflow-init
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8081:8080"
+    user: "50000:0"
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        pip install docker
+        airflow webserver
+    networks:
+      - pipeline-network
+    restart: always
+
+  airflow-scheduler:
+    image: apache/airflow:2.8.1
+    container_name: airflow-scheduler
+    depends_on:
+      - airflow-init
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: "50000:0"
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        pip install docker kafka-python requests
+        airflow scheduler
+    networks:
+      - pipeline-network
+    restart: always
 
 # ============================
 # VOLUMES
@@ -221,8 +303,11 @@ volumes:
   spark-logs:
   hadoop_namenode:
   hadoop_datanode:
-  ivy-cache:  # Shared volume for Ivy/Maven dependencies
+  ivy-cache:
   pgdata:
+  grafana_data:
+  airflow_pgdata:
+
 # ============================
 # NETWORK
 # ============================

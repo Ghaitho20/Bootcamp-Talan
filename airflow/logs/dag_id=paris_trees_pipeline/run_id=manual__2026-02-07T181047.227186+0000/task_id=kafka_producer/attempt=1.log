@@ -1,0 +1,18 @@
+[2026-02-07T18:10:48.567+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: paris_trees_pipeline.kafka_producer manual__2026-02-07T18:10:47.227186+00:00 [queued]>
+[2026-02-07T18:10:48.580+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: paris_trees_pipeline.kafka_producer manual__2026-02-07T18:10:47.227186+00:00 [queued]>
+[2026-02-07T18:10:48.581+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-02-07T18:10:48.598+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): kafka_producer> on 2026-02-07 18:10:47.227186+00:00
+[2026-02-07T18:10:48.604+0000] {standard_task_runner.py:60} INFO - Started process 405 to run task
+[2026-02-07T18:10:48.610+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'paris_trees_pipeline', 'kafka_producer', 'manual__2026-02-07T18:10:47.227186+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/trees_pipeline_dag.py', '--cfg-path', '/tmp/tmpg0hwf7vt']
+[2026-02-07T18:10:48.615+0000] {standard_task_runner.py:88} INFO - Job 8: Subtask kafka_producer
+[2026-02-07T18:10:48.687+0000] {task_command.py:423} INFO - Running <TaskInstance: paris_trees_pipeline.kafka_producer manual__2026-02-07T18:10:47.227186+00:00 [running]> on host 775bbe24b5e5
+[2026-02-07T18:10:48.802+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ghaith' AIRFLOW_CTX_DAG_ID='paris_trees_pipeline' AIRFLOW_CTX_TASK_ID='kafka_producer' AIRFLOW_CTX_EXECUTION_DATE='2026-02-07T18:10:47.227186+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-07T18:10:47.227186+00:00'
+[2026-02-07T18:10:49.788+0000] {logging_mixin.py:188} INFO - Kafka producer started... fetching batch at offset 2
+Batch sent to Kafka | offset=2 | 20 records
+NEXT_OFFSET=3
+[2026-02-07T18:10:49.803+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-02-07T18:10:49.810+0000] {logging_mixin.py:188} INFO - Updated Airflow Variable: paris_trees_offset = 3
+[2026-02-07T18:10:49.813+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-02-07T18:10:49.832+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=paris_trees_pipeline, task_id=kafka_producer, execution_date=20260207T181047, start_date=20260207T181048, end_date=20260207T181049
+[2026-02-07T18:10:49.871+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-07T18:10:49.907+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

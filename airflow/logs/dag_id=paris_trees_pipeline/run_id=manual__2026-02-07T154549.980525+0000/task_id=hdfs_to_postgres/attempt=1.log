@@ -1,0 +1,141 @@
+[2026-02-07T15:46:52.235+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: paris_trees_pipeline.hdfs_to_postgres manual__2026-02-07T15:45:49.980525+00:00 [queued]>
+[2026-02-07T15:46:52.246+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: paris_trees_pipeline.hdfs_to_postgres manual__2026-02-07T15:45:49.980525+00:00 [queued]>
+[2026-02-07T15:46:52.247+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-02-07T15:46:52.263+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): hdfs_to_postgres> on 2026-02-07 15:45:49.980525+00:00
+[2026-02-07T15:46:52.269+0000] {standard_task_runner.py:60} INFO - Started process 203 to run task
+[2026-02-07T15:46:52.272+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'paris_trees_pipeline', 'hdfs_to_postgres', 'manual__2026-02-07T15:45:49.980525+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/trees_pipeline_dag.py', '--cfg-path', '/tmp/tmpjli0lxwj']
+[2026-02-07T15:46:52.275+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask hdfs_to_postgres
+[2026-02-07T15:46:52.341+0000] {task_command.py:423} INFO - Running <TaskInstance: paris_trees_pipeline.hdfs_to_postgres manual__2026-02-07T15:45:49.980525+00:00 [running]> on host 9a726ffb82e6
+[2026-02-07T15:46:52.450+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ghaith' AIRFLOW_CTX_DAG_ID='paris_trees_pipeline' AIRFLOW_CTX_TASK_ID='hdfs_to_postgres' AIRFLOW_CTX_EXECUTION_DATE='2026-02-07T15:45:49.980525+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-07T15:45:49.980525+00:00'
+[2026-02-07T15:48:57.468+0000] {logging_mixin.py:188} INFO - :: loading settings :: url = jar:file:/opt/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: /root/.ivy2/cache
+The jars for the packages stored in: /root/.ivy2/jars
+org.postgresql#postgresql added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-8b7d5ec4-c4dc-4af9-9709-4d16dbd588a4;1.0
+	confs: [default]
+	found org.postgresql#postgresql;42.2.18 in central
+	found org.checkerframework#checker-qual;3.5.0 in central
+downloading https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.18/postgresql-42.2.18.jar ...
+	[SUCCESSFUL ] org.postgresql#postgresql;42.2.18!postgresql.jar (398ms)
+downloading https://repo1.maven.org/maven2/org/checkerframework/checker-qual/3.5.0/checker-qual-3.5.0.jar ...
+	[SUCCESSFUL ] org.checkerframework#checker-qual;3.5.0!checker-qual.jar (142ms)
+:: resolution report :: resolve 849ms :: artifacts dl 549ms
+	:: modules in use:
+	org.checkerframework#checker-qual;3.5.0 from central in [default]
+	org.postgresql#postgresql;42.2.18 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   2   |   2   |   0   ||   2   |   2   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-8b7d5ec4-c4dc-4af9-9709-4d16dbd588a4
+	confs: [default]
+	2 artifacts copied, 0 already retrieved (1190kB/8ms)
+26/02/07 15:46:57 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/02/07 15:46:58 INFO SparkContext: Running Spark version 3.4.1
+26/02/07 15:46:58 INFO ResourceUtils: ==============================================================
+26/02/07 15:46:58 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/02/07 15:46:58 INFO ResourceUtils: ==============================================================
+26/02/07 15:46:58 INFO SparkContext: Submitted application: HDFS → PostgreSQL Streaming
+26/02/07 15:46:58 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/02/07 15:46:58 INFO ResourceProfile: Limiting resource is cpu
+26/02/07 15:46:58 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/02/07 15:46:58 INFO SecurityManager: Changing view acls to: root
+26/02/07 15:46:58 INFO SecurityManager: Changing modify acls to: root
+26/02/07 15:46:58 INFO SecurityManager: Changing view acls groups to: 
+26/02/07 15:46:58 INFO SecurityManager: Changing modify acls groups to: 
+26/02/07 15:46:58 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+26/02/07 15:46:58 INFO Utils: Successfully started service 'sparkDriver' on port 34891.
+26/02/07 15:46:58 INFO SparkEnv: Registering MapOutputTracker
+26/02/07 15:46:59 INFO SparkEnv: Registering BlockManagerMaster
+26/02/07 15:46:59 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/02/07 15:46:59 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/02/07 15:46:59 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/02/07 15:46:59 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-5d18840e-59ae-4895-9c9e-8915d831160d
+26/02/07 15:46:59 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+26/02/07 15:46:59 INFO SparkEnv: Registering OutputCommitCoordinator
+26/02/07 15:46:59 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/02/07 15:46:59 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/02/07 15:46:59 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.postgresql_postgresql-42.2.18.jar at spark://spark-master:34891/jars/org.postgresql_postgresql-42.2.18.jar with timestamp 1770479218309
+26/02/07 15:46:59 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.checkerframework_checker-qual-3.5.0.jar at spark://spark-master:34891/jars/org.checkerframework_checker-qual-3.5.0.jar with timestamp 1770479218309
+26/02/07 15:46:59 INFO SparkContext: Added file file:///root/.ivy2/jars/org.postgresql_postgresql-42.2.18.jar at spark://spark-master:34891/files/org.postgresql_postgresql-42.2.18.jar with timestamp 1770479218309
+26/02/07 15:46:59 INFO Utils: Copying /root/.ivy2/jars/org.postgresql_postgresql-42.2.18.jar to /tmp/spark-6bd06edb-bb30-4a95-af7d-6ed74a7c00e7/userFiles-9c358ab4-19ea-448b-b165-6618cde39528/org.postgresql_postgresql-42.2.18.jar
+26/02/07 15:46:59 INFO SparkContext: Added file file:///root/.ivy2/jars/org.checkerframework_checker-qual-3.5.0.jar at spark://spark-master:34891/files/org.checkerframework_checker-qual-3.5.0.jar with timestamp 1770479218309
+26/02/07 15:46:59 INFO Utils: Copying /root/.ivy2/jars/org.checkerframework_checker-qual-3.5.0.jar to /tmp/spark-6bd06edb-bb30-4a95-af7d-6ed74a7c00e7/userFiles-9c358ab4-19ea-448b-b165-6618cde39528/org.checkerframework_checker-qual-3.5.0.jar
+26/02/07 15:46:59 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/02/07 15:46:59 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.7:7077 after 49 ms (0 ms spent in bootstraps)
+26/02/07 15:46:59 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260207154659-0001
+26/02/07 15:46:59 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260207154659-0001/0 on worker-20260207154457-172.18.0.12-42799 (172.18.0.12:42799) with 2 core(s)
+26/02/07 15:46:59 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41471.
+26/02/07 15:46:59 INFO NettyBlockTransferService: Server created on spark-master:41471
+26/02/07 15:46:59 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/02/07 15:46:59 INFO StandaloneSchedulerBackend: Granted executor ID app-20260207154659-0001/0 on hostPort 172.18.0.12:42799 with 2 core(s), 1024.0 MiB RAM
+26/02/07 15:46:59 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-master, 41471, None)
+26/02/07 15:46:59 INFO BlockManagerMasterEndpoint: Registering block manager spark-master:41471 with 434.4 MiB RAM, BlockManagerId(driver, spark-master, 41471, None)
+26/02/07 15:46:59 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-master, 41471, None)
+26/02/07 15:46:59 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-master, 41471, None)
+26/02/07 15:46:59 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260207154659-0001/0 is now RUNNING
+26/02/07 15:47:00 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+✅ Spark Session created
+
+📂 Reading from: hdfs://namenode:9000/data/paris_trees/raw_csv/part-*.csv
+
+✅ Stream configured
+
+26/02/07 15:47:06 WARN ResolveWriteToStream: Temporary checkpoint location created which is deleted normally when the query didn't fail: /tmp/temporary-690bf48d-2503-432d-b463-78871ec60ac7. If it's required to delete it under any circumstances, please set spark.sql.streaming.forceDeleteTempCheckpointLocation to true. Important to know deleting temp checkpoint folder is best effort.
+26/02/07 15:47:06 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/02/07 15:47:06 WARN ResolveWriteToStream: Temporary checkpoint location created which is deleted normally when the query didn't fail: /tmp/temporary-e935e07d-43df-4c1f-9261-b3982da2487a. If it's required to delete it under any circumstances, please set spark.sql.streaming.forceDeleteTempCheckpointLocation to true. Important to know deleting temp checkpoint folder is best effort.
+26/02/07 15:47:06 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/02/07 15:47:07 WARN ResolveWriteToStream: Temporary checkpoint location created which is deleted normally when the query didn't fail: /tmp/temporary-4a32edfd-be7e-4810-99eb-ea3669519550. If it's required to delete it under any circumstances, please set spark.sql.streaming.forceDeleteTempCheckpointLocation to true. Important to know deleting temp checkpoint folder is best effort.
+26/02/07 15:47:07 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/02/07 15:47:07 WARN ResolveWriteToStream: Temporary checkpoint location created which is deleted normally when the query didn't fail: /tmp/temporary-619bd17b-ff86-437b-b2c6-68eb0513224c. If it's required to delete it under any circumstances, please set spark.sql.streaming.forceDeleteTempCheckpointLocation to true. Important to know deleting temp checkpoint folder is best effort.
+26/02/07 15:47:07 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/02/07 15:47:07 WARN ResolveWriteToStream: Temporary checkpoint location created which is deleted normally when the query didn't fail: /tmp/temporary-495ba3e7-16b3-470c-b4e6-86f59f4e614f. If it's required to delete it under any circumstances, please set spark.sql.streaming.forceDeleteTempCheckpointLocation to true. Important to know deleting temp checkpoint folder is best effort.
+26/02/07 15:47:07 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/02/07 15:47:07 WARN ResolveWriteToStream: Temporary checkpoint location created which is deleted normally when the query didn't fail: /tmp/temporary-f339bf0d-3ffe-4f0f-bada-8d38b2e8a87d. If it's required to delete it under any circumstances, please set spark.sql.streaming.forceDeleteTempCheckpointLocation to true. Important to know deleting temp checkpoint folder is best effort.
+26/02/07 15:47:07 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++-------+-----+------------+-----------------+------------------+---------------------------------------------------------------+------------+----------+-------------+----------------------+--------------+-------+-------------+-------------------+-----------+------------------+------------------+
+|idbase |type |domanialite |arrondissement   |complement_adresse|adresse                                                        |id_location |nom       |genre        |espece                |variete       |hauteur|circonference|stade_developpement|remarquable|lon               |lat               |
++-------+-----+------------+-----------------+------------------+---------------------------------------------------------------+------------+----------+-------------+----------------------+--------------+-------+-------------+-------------------+-----------+------------------+------------------+
+|222720 |Arbre|Alignement  |PARIS 20E ARRDT  |F59-61            |RUE SAINT BLAISE                                               |000804008   |Erable    |Acer         |monspessulanum        |null          |20.0   |5.0          |null               |NON        |2.4082016943882176|48.85719799571384 |
+|287661 |Arbre|Alignement  |PARIS 20E ARRDT  |33                |RUE SAINT BLAISE                                               |000503001   |Chêne     |Quercus      |robur                 |''Fastigiata''|80.0   |12.0         |Adulte             |NON        |2.4062012503068293|48.858689357395924|
+|266478 |Arbre|Alignement  |PARIS 15E ARRDT  |3                 |BOULEVARD VICTOR                                               |000301013   |Platane   |Platanus     |x hispanica           |null          |80.0   |12.0         |Jeune (arbre)Adulte|NON        |2.280345494678834 |48.83571636870645 |
+|250714 |Arbre|Alignement  |PARIS 15E ARRDT  |3                 |BOULEVARD VICTOR                                               |000301010   |Platane   |Platanus     |x hispanica           |null          |100.0  |10.0         |Adulte             |NON        |2.2799723093241453|48.83582430974886 |
+|222715 |Arbre|Alignement  |PARIS 20E ARRDT  |F53               |RUE SAINT BLAISE                                               |000804001   |Platane   |Platanus     |x hispanica           |null          |20.0   |5.0          |Jeune (arbre)      |NON        |2.407586945705435 |48.857585689860606|
+|257536 |Arbre|Alignement  |PARIS 20E ARRDT  |20                |RUE DURIS                                                      |000202003   |Copalme   |Liquidambar  |styraciflua           |null          |60.0   |6.0          |Jeune (arbre)Adulte|NON        |2.3879342223222766|48.865157096211185|
+|2012907|Arbre|Jardin      |BOIS DE VINCENNES|null              |INSEP / AVENUE DU TREMBLAY                                     |00130050    |Chêne     |Quercus      |rubra                 |null          |20.0   |5.0          |Jeune (arbre)      |NON        |2.452314378958675 |48.82967695118562 |
+|2032346|Arbre|Jardin      |PARIS 7E ARRDT   |Canton 01 / SETE  |JARDIN DU CHAMP DE MARS ET PELOUSES DE L ECOLE MILITAIRE / SETE|P00103002   |Platane   |Platanus     |x hispanica           |null          |50.0   |8.0          |Jeune (arbre)      |NON        |2.2938721030898312|48.85805290587445 |
+|203279 |Arbre|Alignement  |PARIS 14E ARRDT  |null              |AVENUE DE LA PORTE DIDOT                                       |000402001   |Erable    |Acer         |monspessulanum        |null          |65.0   |5.0          |Jeune (arbre)      |NON        |2.310331096157133 |48.82588854189398 |
+|233246 |Arbre|Alignement  |PARIS 19E ARRDT  |null              |RUE DE BELLEVILLE                                              |002901006   |Sophora   |Styphnolobium|japonicum             |null          |120.0  |15.0         |Adulte             |NON        |2.401509755241157 |48.87593381868946 |
+|246337 |Arbre|Alignement  |PARIS 14E ARRDT  |null              |BOULEVARD SAINT JACQUES                                        |000204044   |Platane   |Platanus     |x hispanica           |null          |120.0  |15.0         |Jeune (arbre)Adulte|NON        |2.33775469767548  |48.83296823769696 |
+|148893 |Arbre|CIMETIERE   |SEINE-SAINT-DENIS|null              |CIMETIERE DE PANTIN / AVENUE DES MARRONNIERS D''INDE / DIV 30  |A06500030010|Marronnier|Aesculus     |hippocastanum         |null          |0.0    |0.0          |null               |null       |2.4069599628014156|48.90667860874377 |
+|158517 |Arbre|CIMETIERE   |HAUTS-DE-SEINE   |null              |CIMETIERE DE BAGNEUX / AVENUE DES FEVIERS D AMERIQUE / DIV 108 |A05500108003|Fevier    |Gleditsia    |triacanthos f. Inermis|null          |0.0    |0.0          |null               |NON        |2.3053310126277196|48.80214011561182 |
+|168077 |Arbre|CIMETIERE   |PARIS 20E ARRDT  |null              |CIMETIERE DU PERE LACHAISE / AVENUE AGUADO / DIV 44            |A00600044005|Thuya     |Thuja        |sp.                   |null          |65.0   |6.0          |Adulte             |NON        |2.395452448950822 |48.86187142393761 |
+|184291 |Arbre|DASCO       |PARIS 15E ARRDT  |null              |ECOLE MATERNELLE / 2 RUE THEODORE DECK                         |000101001   |Marronnier|Aesculus     |hippocastanum         |null          |105.0  |17.0         |Adulte             |NON        |2.2905372057296183|48.837702215046335|
+|186890 |Arbre|DASCO       |PARIS 19E ARRDT  |null              |ECOLE ELEMENTAIRE A / 40 BIS RUE MANIN                         |000101017   |Erable    |Acer         |campestre             |null          |60.0   |7.0          |Jeune (arbre)Adulte|NON        |2.390729532331917 |48.883629030922954|
+|197347 |Arbre|PERIPHERIQUE|PARIS 18E ARRDT  |null              |TALUS N°23-09                                                  |092309002   |Sophora   |Styphnolobium|japonicum             |null          |140.0  |16.0         |Adulte             |NON        |2.359524137558938 |48.900368733887206|
+|197605 |Arbre|PERIPHERIQUE|PARIS 19E ARRDT  |null              |TALUS N°24-07                                                  |092407066   |Tilleul   |Tilia        |tomentosa             |null          |99.0   |11.0         |Adulte             |NON        |2.3722724592426956|48.90001683331582 |
+|202088 |Arbre|Alignement  |BOIS DE VINCENNES|null              |AVENUE DU TREMBLAY                                             |000301024   |Chêne     |Quercus      |sp.                   |null          |45.0   |9.0          |Jeune (arbre)      |NON        |2.459252110898503 |48.83097040619558 |
+|249108 |Arbre|Alignement  |PARIS 20E ARRDT  |205-207           |AVENUE GAMBETTA                                                |002901006   |Tilleul   |Tilia        |cordata               |null          |50.0   |8.0          |Jeune (arbre)Adulte|NON        |2.4049085743696033|48.87325603124485 |
++-------+-----+------------+-----------------+------------------+---------------------------------------------------------------+------------+----------+-------------+----------------------+--------------+-------+-------------+-------------------+-----------+------------------+------------------+
+
+26/02/07 15:48:53 ERROR TaskSchedulerImpl: Lost executor 0 on 172.18.0.12: Worker shutting down
+[2026-02-07T15:48:57.478+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/trees_pipeline_dag.py", line 66, in run_hdfs_to_postgres
+    raise Exception("HDFS to Postgres job failed")
+Exception: HDFS to Postgres job failed
+[2026-02-07T15:48:57.545+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=paris_trees_pipeline, task_id=hdfs_to_postgres, execution_date=20260207T154549, start_date=20260207T154652, end_date=20260207T154857
+[2026-02-07T15:48:57.631+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task hdfs_to_postgres (HDFS to Postgres job failed; 203)
+[2026-02-07T15:48:57.674+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-02-07T15:48:57.795+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

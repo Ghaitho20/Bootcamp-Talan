@@ -1,0 +1,87 @@
+[2026-02-07T18:15:47.489+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: paris_trees_pipeline.hdfs_to_postgres manual__2026-02-07T18:15:13.933985+00:00 [queued]>
+[2026-02-07T18:15:47.501+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: paris_trees_pipeline.hdfs_to_postgres manual__2026-02-07T18:15:13.933985+00:00 [queued]>
+[2026-02-07T18:15:47.503+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-02-07T18:15:47.525+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): hdfs_to_postgres> on 2026-02-07 18:15:13.933985+00:00
+[2026-02-07T18:15:47.532+0000] {standard_task_runner.py:60} INFO - Started process 477 to run task
+[2026-02-07T18:15:47.538+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'paris_trees_pipeline', 'hdfs_to_postgres', 'manual__2026-02-07T18:15:13.933985+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/trees_pipeline_dag.py', '--cfg-path', '/tmp/tmp758b_o24']
+[2026-02-07T18:15:47.541+0000] {standard_task_runner.py:88} INFO - Job 19: Subtask hdfs_to_postgres
+[2026-02-07T18:15:47.616+0000] {task_command.py:423} INFO - Running <TaskInstance: paris_trees_pipeline.hdfs_to_postgres manual__2026-02-07T18:15:13.933985+00:00 [running]> on host 775bbe24b5e5
+[2026-02-07T18:15:47.777+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ghaith' AIRFLOW_CTX_DAG_ID='paris_trees_pipeline' AIRFLOW_CTX_TASK_ID='hdfs_to_postgres' AIRFLOW_CTX_EXECUTION_DATE='2026-02-07T18:15:13.933985+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-07T18:15:13.933985+00:00'
+[2026-02-07T18:16:20.364+0000] {logging_mixin.py:188} INFO - :: loading settings :: url = jar:file:/opt/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: /root/.ivy2/cache
+The jars for the packages stored in: /root/.ivy2/jars
+org.postgresql#postgresql added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-e7006e39-31a4-40bb-b321-b55cfed56d58;1.0
+	confs: [default]
+	found org.postgresql#postgresql;42.2.18 in central
+	found org.checkerframework#checker-qual;3.5.0 in central
+:: resolution report :: resolve 180ms :: artifacts dl 10ms
+	:: modules in use:
+	org.checkerframework#checker-qual;3.5.0 from central in [default]
+	org.postgresql#postgresql;42.2.18 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   2   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-e7006e39-31a4-40bb-b321-b55cfed56d58
+	confs: [default]
+	0 artifacts copied, 2 already retrieved (0kB/8ms)
+26/02/07 18:15:51 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/02/07 18:15:52 INFO SparkContext: Running Spark version 3.4.1
+26/02/07 18:15:52 INFO ResourceUtils: ==============================================================
+26/02/07 18:15:52 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/02/07 18:15:52 INFO ResourceUtils: ==============================================================
+26/02/07 18:15:52 INFO SparkContext: Submitted application: HDFS_to_Postgres_Batch
+26/02/07 18:15:52 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/02/07 18:15:52 INFO ResourceProfile: Limiting resource is cpu
+26/02/07 18:15:52 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/02/07 18:15:52 INFO SecurityManager: Changing view acls to: root
+26/02/07 18:15:52 INFO SecurityManager: Changing modify acls to: root
+26/02/07 18:15:52 INFO SecurityManager: Changing view acls groups to: 
+26/02/07 18:15:52 INFO SecurityManager: Changing modify acls groups to: 
+26/02/07 18:15:52 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+26/02/07 18:15:52 INFO Utils: Successfully started service 'sparkDriver' on port 44775.
+26/02/07 18:15:52 INFO SparkEnv: Registering MapOutputTracker
+26/02/07 18:15:53 INFO SparkEnv: Registering BlockManagerMaster
+26/02/07 18:15:53 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/02/07 18:15:53 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/02/07 18:15:53 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/02/07 18:15:53 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-2e975931-b341-45c2-9c48-a45e6c8012fe
+26/02/07 18:15:53 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+26/02/07 18:15:53 INFO SparkEnv: Registering OutputCommitCoordinator
+26/02/07 18:15:53 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/02/07 18:15:53 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/02/07 18:15:53 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.postgresql_postgresql-42.2.18.jar at spark://spark-master:44775/jars/org.postgresql_postgresql-42.2.18.jar with timestamp 1770488152259
+26/02/07 18:15:53 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.checkerframework_checker-qual-3.5.0.jar at spark://spark-master:44775/jars/org.checkerframework_checker-qual-3.5.0.jar with timestamp 1770488152259
+26/02/07 18:15:53 INFO SparkContext: Added file file:///root/.ivy2/jars/org.postgresql_postgresql-42.2.18.jar at spark://spark-master:44775/files/org.postgresql_postgresql-42.2.18.jar with timestamp 1770488152259
+26/02/07 18:15:53 INFO Utils: Copying /root/.ivy2/jars/org.postgresql_postgresql-42.2.18.jar to /tmp/spark-748e4f23-24a3-47fe-8b17-47cb358efbae/userFiles-c90dd00d-377d-4745-9c40-a408418eac64/org.postgresql_postgresql-42.2.18.jar
+26/02/07 18:15:53 INFO SparkContext: Added file file:///root/.ivy2/jars/org.checkerframework_checker-qual-3.5.0.jar at spark://spark-master:44775/files/org.checkerframework_checker-qual-3.5.0.jar with timestamp 1770488152259
+26/02/07 18:15:53 INFO Utils: Copying /root/.ivy2/jars/org.checkerframework_checker-qual-3.5.0.jar to /tmp/spark-748e4f23-24a3-47fe-8b17-47cb358efbae/userFiles-c90dd00d-377d-4745-9c40-a408418eac64/org.checkerframework_checker-qual-3.5.0.jar
+26/02/07 18:15:53 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/02/07 18:15:53 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.6:7077 after 34 ms (0 ms spent in bootstraps)
+26/02/07 18:15:53 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260207181553-0011
+26/02/07 18:15:53 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260207181553-0011/0 on worker-20260207174853-172.18.0.11-38929 (172.18.0.11:38929) with 2 core(s)
+26/02/07 18:15:53 INFO StandaloneSchedulerBackend: Granted executor ID app-20260207181553-0011/0 on hostPort 172.18.0.11:38929 with 2 core(s), 1024.0 MiB RAM
+26/02/07 18:15:53 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 44073.
+26/02/07 18:15:53 INFO NettyBlockTransferService: Server created on spark-master:44073
+26/02/07 18:15:53 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/02/07 18:15:54 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-master, 44073, None)
+26/02/07 18:15:54 INFO BlockManagerMasterEndpoint: Registering block manager spark-master:44073 with 434.4 MiB RAM, BlockManagerId(driver, spark-master, 44073, None)
+26/02/07 18:15:54 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-master, 44073, None)
+26/02/07 18:15:54 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-master, 44073, None)
+26/02/07 18:15:54 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260207181553-0011/0 is now RUNNING
+26/02/07 18:15:54 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+✅ Spark Session created
+
+✅ Written 12 records to trees_by_arrondissement
+✅ Written 13 records to trees_by_species
+✅ Written 12 records to trees_height_stats
+✅ Written 12 records to trees_remarkable_stats
+✅ Written 420 records to trees_geo_data
+✅ All data written to Postgres. Job finished.
+[2026-02-07T18:16:20.366+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-02-07T18:16:20.382+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=paris_trees_pipeline, task_id=hdfs_to_postgres, execution_date=20260207T181513, start_date=20260207T181547, end_date=20260207T181620
+[2026-02-07T18:16:20.422+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-07T18:16:20.447+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
